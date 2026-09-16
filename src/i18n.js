@@ -174,7 +174,7 @@ export const translations = {
     disabledDueToRole: '— أنت مسجل الدخول كـ {user} لذلك تم تعطيل الإجراءات أدناه.',
     commentLabel: 'التعليق (إجباري للموافقة)',
     targetVersion: 'إصدار الهدف / البناء (اختياري)',
-    approveAndMove: 'الموافقة → الانتقال إلى {stage}',
+    approveAndMove: 'الموافقة ← الانتقال إلى {stage}',
     approveComplete: 'الموافقة و الإكمال',
     documents: 'الوثائق',
     documentType: 'نوع الوثيقة',

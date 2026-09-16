@@ -133,7 +133,7 @@ export default function Dashboard() {
                       <span className="req-footer-item">{timeSince(r.createdAt)}</span>
                     </div>
 
-                    <span className="req-row-arrow"><ArrowRight size={16} /></span>
+                    <span className="req-row-arrow"><ArrowRight className="directional-icon" size={16} /></span>
                   </Link>
                 );
               })}

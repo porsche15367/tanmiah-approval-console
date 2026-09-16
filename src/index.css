@@ -72,6 +72,7 @@ html[dir="rtl"] .req-row.risk-accent-high,
 html[dir="rtl"] .req-row.risk-accent-critical { border-right-color: var(--red-600); }
 html[dir="rtl"] .nr-timeline-preview li::before { left: auto; right: 11px; }
 html[dir="rtl"] .pkg-tab { margin-right: 0; margin-left: 14px; }
+html[dir="rtl"] .directional-icon { transform: scaleX(-1); }
 
 .lang-toggle {
   border: 1px solid var(--gray-200);

@@ -107,7 +107,7 @@ export default function RequestDetail() {
   return (
     <main className="container">
       <div style={{ marginBottom: 18 }}>
-        <Link to="/" style={{ color: 'var(--gray-500)', fontSize: '0.85rem', display: 'inline-flex', alignItems: 'center', gap: 6 }}><ArrowLeft size={14} /> Back to dashboard</Link>
+        <Link to="/" style={{ color: 'var(--gray-500)', fontSize: '0.85rem', display: 'inline-flex', alignItems: 'center', gap: 6 }}><ArrowLeft className="directional-icon" size={14} /> Back to dashboard</Link>
       </div>
 
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: 12 }}>

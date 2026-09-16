@@ -73,7 +73,7 @@ export default function Sidebar() {
       </nav>
 
       <button className="sidebar-toggle" onClick={toggle} title={collapsed ? t('expandMenu') : t('collapseMenu')}>
-        {collapsed ? <ChevronsRight size={15} /> : <ChevronsLeft size={15} />}
+        {collapsed ? <ChevronsRight className="directional-icon" size={15} /> : <ChevronsLeft className="directional-icon" size={15} />}
       </button>
 
       <div className="sidebar-footer">
