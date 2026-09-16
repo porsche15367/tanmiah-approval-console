@@ -35,6 +35,54 @@ export const DOC_TYPES = [
   'Closure Sign-off',
 ];
 
+export const DEPLOYMENT_PROJECTS = [
+  {
+    id: 'project-tanmiah-plus',
+    name: 'Tanmiah+',
+    location: 'Digital Transformation • Saudi Arabia',
+    deployments: [
+      { id: 'deploy-signature-flow', name: 'Signature Flow', start: '2020-01-01', end: '2020-01-15', color: '#4b5d73' },
+      { id: 'deploy-esb-integration', name: 'ESB Integration', start: '2020-01-08', end: '2020-01-25', color: '#b7a59a' },
+      { id: 'deploy-access-governance', name: 'Access Governance', start: '2020-01-20', end: '2020-02-04', color: '#8d6b4d' },
+      { id: 'deploy-dashboard-analytics', name: 'Dashboard Analytics', start: '2020-01-27', end: '2020-02-15', color: '#7090ab' },
+      { id: 'deploy-automation-coverage', name: 'Automation Coverage', start: '2020-02-10', end: '2020-02-26', color: '#c9b7a7' },
+      { id: 'deploy-readiness-approval', name: 'Readiness Approval', start: '2020-02-25', end: '2020-03-08', color: '#1f6d5a' },
+    ],
+  },
+  {
+    id: 'project-esb',
+    name: 'ESB',
+    location: 'Integration Layer • Saudi Arabia',
+    deployments: [
+      { id: 'esb-architecture', name: 'System Architecture', start: '2020-01-10', end: '2020-01-24', color: '#4b5d73' },
+      { id: 'esb-api-connectors', name: 'API Channel Delivery', start: '2020-01-21', end: '2020-02-12', color: '#8099b5' },
+      { id: 'esb-mapping', name: 'Message Transformation', start: '2020-02-08', end: '2020-02-25', color: '#d0b7a5' },
+      { id: 'esb-go-live', name: 'Integration Sign-Off', start: '2020-02-22', end: '2020-03-14', color: '#5f7f61' },
+    ],
+  },
+  {
+    id: 'project-internal-portal',
+    name: 'Internal Portal',
+    location: 'Operations • Saudi Arabia',
+    deployments: [
+      { id: 'portal-discovery', name: 'Service Discovery', start: '2020-01-04', end: '2020-01-18', color: '#4b5d73' },
+      { id: 'portal-workflow', name: 'Workflow Automation', start: '2020-01-15', end: '2020-02-06', color: '#8d6b4d' },
+      { id: 'portal-approvals', name: 'Approval Workflow', start: '2020-02-02', end: '2020-02-20', color: '#c9b7a7' },
+      { id: 'portal-release', name: 'Release Governance', start: '2020-02-18', end: '2020-03-24', color: '#1f6d5a' },
+    ],
+  },
+  {
+    id: 'project-masar',
+    name: 'Masar',
+    location: 'Service Enablement • Saudi Arabia',
+    deployments: [
+      { id: 'masar-scope', name: 'Scope Definition', start: '2020-01-06', end: '2020-01-22', color: '#4b5d73' },
+      { id: 'masar-integration', name: 'Service Onboarding', start: '2020-01-20', end: '2020-02-19', color: '#7090ab' },
+      { id: 'masar-activation', name: 'Activation Flow', start: '2020-02-17', end: '2020-03-12', color: '#2d7b66' },
+    ],
+  },
+];
+
 // Simulated DevOps backlog — look-and-feel only, no real Azure DevOps/Jira integration.
 export const BACKLOG_ITEMS = [
   { id: 'bl-1201', title: 'SMS notifications for grievance status updates', epic: 'Grievances Management', type: 'Feature' },

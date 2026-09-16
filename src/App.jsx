@@ -7,6 +7,7 @@ import RequestDetail from './pages/RequestDetail';
 import AdminConfig from './pages/AdminConfig';
 import Login from './pages/Login';
 import Profile from './pages/Profile';
+import ProjectTimelinePage from './pages/ProjectTimelinePage';
 import RequireAuth from './components/RequireAuth';
 
 export default function App() {
@@ -29,6 +30,8 @@ export default function App() {
         <Routes>
           <Route path="/" element={<RequireAuth><Dashboard /></RequireAuth>} />
           <Route path="/new" element={<RequireAuth><NewRequest /></RequireAuth>} />
+          <Route path="/projects" element={<RequireAuth><ProjectTimelinePage /></RequireAuth>} />
+          <Route path="/projects/:projectId" element={<RequireAuth><ProjectTimelinePage /></RequireAuth>} />
           <Route path="/request/:id" element={<RequireAuth><RequestDetail /></RequireAuth>} />
           <Route path="/profile" element={<RequireAuth><Profile /></RequireAuth>} />
           <Route path="/admin" element={<RequireAuth requireRoleId="role-admin"><AdminConfig /></RequireAuth>} />

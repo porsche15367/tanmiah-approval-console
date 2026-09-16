@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
-import { LayoutDashboard, PlusCircle, RefreshCw, CheckCircle2, UserCircle2, Settings, ChevronsLeft, ChevronsRight } from 'lucide-react';
+import { LayoutDashboard, PlusCircle, RefreshCw, CheckCircle2, UserCircle2, Settings, ChevronsLeft, ChevronsRight, FolderKanban } from 'lucide-react';
 import { useAppState, useCurrentUser } from '../context/AppContext';
 
 export default function Sidebar() {
@@ -44,6 +44,9 @@ export default function Sidebar() {
         </Link>
         <Link to="/new" className={`side-link ${location.pathname === '/new' ? 'active' : ''}`} title="New Request">
           <PlusCircle className="side-icon" size={16} /> {!collapsed && 'New Request'}
+        </Link>
+        <Link to="/projects" className={`side-link ${location.pathname.startsWith('/projects') ? 'active' : ''}`} title="Projects Timeline">
+          <FolderKanban className="side-icon" size={16} /> {!collapsed && 'Projects Timeline'}
         </Link>
 
         {!collapsed && <div className="side-section-label">Requests</div>}
