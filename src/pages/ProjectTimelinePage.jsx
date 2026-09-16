@@ -1,17 +1,18 @@
 import { useMemo } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { DEPLOYMENT_PROJECTS } from '../data/seed';
+import { useLocale } from '../context/LocaleContext';
 
 const TIMELINE_START = new Date('2020-01-01T00:00:00Z');
 const TIMELINE_END = new Date('2020-03-29T00:00:00Z');
 
-function formatDateShort(dateLike) {
+function formatDateShort(dateLike, locale) {
   const date = new Date(dateLike);
-  return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
+  return new Intl.DateTimeFormat(locale === 'ar' ? 'ar-SA' : 'en-US', { day: 'numeric', month: 'numeric', year: 'numeric' }).format(date);
 }
 
-function formatRange(start, end) {
-  return `${formatDateShort(start)}-${formatDateShort(end)}`;
+function formatRange(start, end, locale) {
+  return `${formatDateShort(start, locale)} - ${formatDateShort(end, locale)}`;
 }
 
 function getPercent(dateString) {
@@ -23,6 +24,7 @@ function getPercent(dateString) {
 
 export default function ProjectTimelinePage() {
   const { projectId } = useParams();
+  const { t, locale, dir } = useLocale();
 
   const projects = DEPLOYMENT_PROJECTS;
   const selectedProject = projects.find((p) => p.id === projectId) || projects[0];
@@ -43,7 +45,7 @@ export default function ProjectTimelinePage() {
     <main className="container timeline-page-shell">
       <div className="page-head timeline-page-head">
         <div>
-          <h1>Projects</h1>
+          <h1>{t('projects')}</h1>
         </div>
       </div>
 
@@ -75,13 +77,13 @@ export default function ProjectTimelinePage() {
                 <div className="timeline-row-modern" key={deployment.id}>
                   <div className="timeline-row-label-modern">
                     <span>{deployment.name}</span>
-                    <small>{formatRange(deployment.start, deployment.end)}</small>
+                    <small>{formatRange(deployment.start, deployment.end, locale)}</small>
                   </div>
                   <div className="timeline-track-modern">
                     <div
                       className="timeline-bar-modern"
                       style={{
-                        left: `${start}%`,
+                        [dir === 'rtl' ? 'right' : 'left']: `${start}%`,
                         width: `${width}%`,
                         background: deployment.color,
                       }}
@@ -94,7 +96,7 @@ export default function ProjectTimelinePage() {
 
           <div className="timeline-scale-modern" aria-label="Timeline scale">
             {dateScale.map((date) => (
-              <span key={date.toISOString()}>{formatDateShort(date)}</span>
+              <span key={date.toISOString()}>{formatDateShort(date, locale)}</span>
             ))}
           </div>
         </div>

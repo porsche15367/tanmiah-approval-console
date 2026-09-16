@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
 import { Pencil, Plus, X } from 'lucide-react';
+import { useLocale } from '../context/LocaleContext';
 
 function ChipToggle({ options, valueKey, labelKey, selected, onToggle }) {
   return (
@@ -24,6 +25,7 @@ function ChipToggle({ options, valueKey, labelKey, selected, onToggle }) {
  */
 export default function StageModal({ open, onOpenChange, stage, roles, docTypes, otherStages, onSave, onDisable }) {
   const isEdit = !!stage;
+  const { t } = useLocale();
   const [form, setForm] = useState({ name: '', approverRoles: [], requiredDocsToEnter: [], sendBackTargets: [], slaHours: 24 });
 
   useEffect(() => {
@@ -59,7 +61,7 @@ export default function StageModal({ open, onOpenChange, stage, roles, docTypes,
         <Dialog.Overlay className="rx-overlay" />
         <Dialog.Content className="rx-modal rx-modal-wide">
           <Dialog.Title className="rx-modal-title" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            {isEdit ? <><Pencil size={17} /> Edit "{stage.name}"</> : <><Plus size={17} /> Add New Stage</>}
+            {isEdit ? <><Pencil size={17} /> {t('editStage', { stage: stage.name })}</> : <><Plus size={17} /> {t('addNewStage')}</>}
           </Dialog.Title>
           <Dialog.Description className="rx-modal-desc">
             {isEdit
@@ -68,37 +70,37 @@ export default function StageModal({ open, onOpenChange, stage, roles, docTypes,
           </Dialog.Description>
 
           <div className="form-row">
-            <label>Stage Name</label>
+            <label>{t('stageName')}</label>
             <input value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} placeholder="e.g. Data Privacy Review" autoFocus />
           </div>
 
           <div className="form-row">
-            <label>Approver Role(s)</label>
+            <label>{t('approverRoles')}</label>
             <ChipToggle options={roles} valueKey="id" labelKey="name" selected={form.approverRoles} onToggle={toggleIn('approverRoles')} />
           </div>
 
           <div className="form-row">
-            <label>Required Documents to Enter</label>
+            <label>{t('requiredDocuments')}</label>
             <ChipToggle options={docTypes.map((d) => ({ id: d, name: d }))} valueKey="id" labelKey="name" selected={form.requiredDocsToEnter} onToggle={toggleIn('requiredDocsToEnter')} />
           </div>
 
           <div className="form-row">
-            <label>Can Send Back To</label>
+            <label>{t('canSendBackTo')}</label>
             <ChipToggle options={otherStages} valueKey="id" labelKey="name" selected={form.sendBackTargets} onToggle={toggleIn('sendBackTargets')} />
           </div>
 
           <div className="form-row" style={{ maxWidth: 160 }}>
-            <label>SLA (hours)</label>
+            <label>{t('slaHours')}</label>
             <input type="number" value={form.slaHours} onChange={(e) => setForm({ ...form, slaHours: Number(e.target.value) })} />
           </div>
 
           <div className="rx-modal-actions" style={{ justifyContent: isEdit ? 'space-between' : 'flex-end' }}>
-            {isEdit && <button className="btn btn-danger" onClick={() => { onDisable(); onOpenChange(false); }}>Disable Stage</button>}
+            {isEdit && <button className="btn btn-danger" onClick={() => { onDisable(); onOpenChange(false); }}>{t('disableStage')}</button>}
             <div style={{ display: 'flex', gap: 10 }}>
               <Dialog.Close asChild>
-                <button className="btn btn-outline">Cancel</button>
+                <button className="btn btn-outline">{t('cancel')}</button>
               </Dialog.Close>
-              <button className="btn btn-primary" onClick={save}>{isEdit ? 'Save Changes' : 'Add Stage'}</button>
+              <button className="btn btn-primary" onClick={save}>{isEdit ? t('saveChanges') : t('addStage')}</button>
             </div>
           </div>
 

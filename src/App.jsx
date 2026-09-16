@@ -1,4 +1,5 @@
 import { Routes, Route, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
 import Dashboard from './pages/Dashboard';
@@ -9,10 +10,17 @@ import Login from './pages/Login';
 import Profile from './pages/Profile';
 import ProjectTimelinePage from './pages/ProjectTimelinePage';
 import RequireAuth from './components/RequireAuth';
+import { useLocale } from './context/LocaleContext';
 
 export default function App() {
   const location = useLocation();
   const isLoginPage = location.pathname === '/login';
+  const { dir, locale } = useLocale();
+
+  useEffect(() => {
+    document.documentElement.dir = dir;
+    document.documentElement.lang = locale;
+  }, [dir, locale]);
 
   if (isLoginPage) {
     return (

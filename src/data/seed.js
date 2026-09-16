@@ -3,50 +3,50 @@
 // is fully data-driven and can be reconfigured at runtime (insert / reorder / disable).
 
 export const ROLES = [
-  { id: 'role-requester', name: 'Requester / Business Owner' },
-  { id: 'role-product-owner', name: 'Product Owner / Business Sponsor' },
-  { id: 'role-tech-lead', name: 'Tech Lead' },
-  { id: 'role-qa-lead', name: 'QA Lead' },
-  { id: 'role-security-officer', name: 'Security Officer' },
-  { id: 'role-cab-board', name: 'CAB Board' },
-  { id: 'role-release-manager', name: 'Release Manager' },
-  { id: 'role-admin', name: 'System Admin' },
+  { id: 'role-requester', name: 'مقدم الطلب / مالك الأعمال' },
+  { id: 'role-product-owner', name: 'مالك المنتج / راعي الأعمال' },
+  { id: 'role-tech-lead', name: 'قائد الفريق التقني' },
+  { id: 'role-qa-lead', name: 'قائد ضمان الجودة' },
+  { id: 'role-security-officer', name: 'مسؤول الأمن السيبراني' },
+  { id: 'role-cab-board', name: 'لجنة CAB' },
+  { id: 'role-release-manager', name: 'مدير الإصدارات' },
+  { id: 'role-admin', name: 'مسؤول النظام' },
 ];
 
 export const USERS = [
-  { id: 'user-sara', name: 'Sara Al-Otaibi', email: 'sara@tanmiah.org', roleId: 'role-requester', initials: 'SA' },
-  { id: 'user-omar', name: 'Omar Fathi', email: 'omar@tanmiah.org', roleId: 'role-product-owner', initials: 'OF' },
-  { id: 'user-khalid', name: 'Khalid Noor', email: 'khalid@tanmiah.org', roleId: 'role-tech-lead', initials: 'KN' },
-  { id: 'user-huda', name: 'Huda Al-Zahrani', email: 'huda@tanmiah.org', roleId: 'role-qa-lead', initials: 'HZ' },
-  { id: 'user-faisal', name: 'Faisal Al-Harbi', email: 'faisal@tanmiah.org', roleId: 'role-security-officer', initials: 'FH' },
-  { id: 'user-cab', name: 'CAB Board', email: 'cab@tanmiah.org', roleId: 'role-cab-board', initials: 'CB' },
-  { id: 'user-noura', name: 'Noura Al-Qahtani', email: 'noura@tanmiah.org', roleId: 'role-release-manager', initials: 'NQ' },
-  { id: 'user-admin', name: 'System Admin', email: 'admin@tanmiah.org', roleId: 'role-admin', initials: 'SA' },
+  { id: 'user-sara', name: 'سارة العتيبي', email: 'sara@tanmiah.org', roleId: 'role-requester', initials: 'سع' },
+  { id: 'user-omar', name: 'عمر فتحي', email: 'omar@tanmiah.org', roleId: 'role-product-owner', initials: 'عف' },
+  { id: 'user-khalid', name: 'خالد نور', email: 'khalid@tanmiah.org', roleId: 'role-tech-lead', initials: 'خن' },
+  { id: 'user-huda', name: 'هدى الزهراني', email: 'huda@tanmiah.org', roleId: 'role-qa-lead', initials: 'هز' },
+  { id: 'user-faisal', name: 'فيصل الحربي', email: 'faisal@tanmiah.org', roleId: 'role-security-officer', initials: 'فح' },
+  { id: 'user-cab', name: 'لجنة CAB', email: 'cab@tanmiah.org', roleId: 'role-cab-board', initials: 'لج' },
+  { id: 'user-noura', name: 'نورة القحطاني', email: 'noura@tanmiah.org', roleId: 'role-release-manager', initials: 'نق' },
+  { id: 'user-admin', name: 'مسؤول النظام', email: 'admin@tanmiah.org', roleId: 'role-admin', initials: 'من' },
 ];
 
 export const DOC_TYPES = [
   'BRD',
   'CR',
-  'Dev Package',
-  'Test Report',
-  'Security Report',
-  'Rollback Plan',
-  'Deployment Confirmation',
-  'Closure Sign-off',
+  'حزمة التطوير',
+  'تقرير الاختبار',
+  'تقرير الأمن',
+  'خطة التراجع',
+  'تأكيد النشر',
+  'اعتماد الإغلاق',
 ];
 
 export const DEPLOYMENT_PROJECTS = [
   {
     id: 'project-tanmiah-plus',
-    name: 'Tanmiah+',
-    location: 'Digital Transformation • Saudi Arabia',
+    name: 'تنمية+',
+    location: 'التحول الرقمي • المملكة العربية السعودية',
     deployments: [
-      { id: 'deploy-signature-flow', name: 'Signature Flow', start: '2020-01-01', end: '2020-01-15', color: '#4b5d73' },
-      { id: 'deploy-esb-integration', name: 'ESB Integration', start: '2020-01-08', end: '2020-01-25', color: '#b7a59a' },
-      { id: 'deploy-access-governance', name: 'Access Governance', start: '2020-01-20', end: '2020-02-04', color: '#8d6b4d' },
-      { id: 'deploy-dashboard-analytics', name: 'Dashboard Analytics', start: '2020-01-27', end: '2020-02-15', color: '#7090ab' },
-      { id: 'deploy-automation-coverage', name: 'Automation Coverage', start: '2020-02-10', end: '2020-02-26', color: '#c9b7a7' },
-      { id: 'deploy-readiness-approval', name: 'Readiness Approval', start: '2020-02-25', end: '2020-03-08', color: '#1f6d5a' },
+      { id: 'deploy-signature-flow', name: 'مسار التوقيع', start: '2020-01-01', end: '2020-01-15', color: '#4b5d73' },
+      { id: 'deploy-esb-integration', name: 'تكامل ESB', start: '2020-01-08', end: '2020-01-25', color: '#b7a59a' },
+      { id: 'deploy-access-governance', name: 'حوكمة الصلاحيات', start: '2020-01-20', end: '2020-02-04', color: '#8d6b4d' },
+      { id: 'deploy-dashboard-analytics', name: 'تحليلات لوحة التحكم', start: '2020-01-27', end: '2020-02-15', color: '#7090ab' },
+      { id: 'deploy-automation-coverage', name: 'تغطية الأتمتة', start: '2020-02-10', end: '2020-02-26', color: '#c9b7a7' },
+      { id: 'deploy-readiness-approval', name: 'اعتماد الجاهزية', start: '2020-02-25', end: '2020-03-08', color: '#1f6d5a' },
     ],
   },
   {
@@ -62,8 +62,8 @@ export const DEPLOYMENT_PROJECTS = [
   },
   {
     id: 'project-internal-portal',
-    name: 'Internal Portal',
-    location: 'Operations • Saudi Arabia',
+    name: 'البوابة الداخلية',
+    location: 'العمليات • المملكة العربية السعودية',
     deployments: [
       { id: 'portal-discovery', name: 'Service Discovery', start: '2020-01-04', end: '2020-01-18', color: '#4b5d73' },
       { id: 'portal-workflow', name: 'Workflow Automation', start: '2020-01-15', end: '2020-02-06', color: '#8d6b4d' },
@@ -73,8 +73,8 @@ export const DEPLOYMENT_PROJECTS = [
   },
   {
     id: 'project-masar',
-    name: 'Masar',
-    location: 'Service Enablement • Saudi Arabia',
+    name: 'مسار',
+    location: 'تمكين الخدمات • المملكة العربية السعودية',
     deployments: [
       { id: 'masar-scope', name: 'Scope Definition', start: '2020-01-06', end: '2020-01-22', color: '#4b5d73' },
       { id: 'masar-integration', name: 'Service Onboarding', start: '2020-01-20', end: '2020-02-19', color: '#7090ab' },
@@ -85,14 +85,14 @@ export const DEPLOYMENT_PROJECTS = [
 
 // Simulated DevOps backlog — look-and-feel only, no real Azure DevOps/Jira integration.
 export const BACKLOG_ITEMS = [
-  { id: 'bl-1201', title: 'SMS notifications for grievance status updates', epic: 'Grievances Management', type: 'Feature' },
-  { id: 'bl-1187', title: 'Bulk export of beneficiary case history', epic: 'Community Sustainability', type: 'Feature' },
-  { id: 'bl-1223', title: 'Finance reconciliation report automation', epic: 'Finance', type: 'Feature' },
-  { id: 'bl-1150', title: 'Ownership transfer e-signature step', epic: 'Ownership Transfer', type: 'Feature' },
-  { id: 'bl-1244', title: 'Quality review checklist digitization', epic: 'Quality', type: 'Feature' },
-  { id: 'bl-1099', title: 'Impact dashboard drill-down filters', epic: 'Impact Measurement', type: 'Enhancement' },
-  { id: 'bl-1256', title: 'Customer service live chat handoff', epic: 'Customer Service', type: 'Feature' },
-  { id: 'bl-1268', title: 'Fix: duplicate case creation on slow network', epic: 'Community Sustainability', type: 'Bug' },
+  { id: 'bl-1201', title: 'إشعارات SMS لتحديثات حالة التظلمات', epic: 'إدارة التظلمات', type: 'ميزة' },
+  { id: 'bl-1187', title: 'تصدير جماعي لسجل حالات المستفيد', epic: 'استدامة المجتمع', type: 'ميزة' },
+  { id: 'bl-1223', title: 'أتمتة تقرير التسويات المالية', epic: 'المالية', type: 'ميزة' },
+  { id: 'bl-1150', title: 'خطوة التوقيع الإلكتروني لنقل الملكية', epic: 'نقل الملكية', type: 'ميزة' },
+  { id: 'bl-1244', title: 'رقمنة قائمة التحقق من مراجعة الجودة', epic: 'الجودة', type: 'ميزة' },
+  { id: 'bl-1099', title: 'فلاتر تفصيلية للوحة قياس الأثر', epic: 'قياس الأثر', type: 'تحسين' },
+  { id: 'bl-1256', title: 'تحويل المحادثة المباشرة لخدمة العملاء', epic: 'خدمة العملاء', type: 'ميزة' },
+  { id: 'bl-1268', title: 'إصلاح: تكرار إنشاء الحالة عند بطء الشبكة', epic: 'استدامة المجتمع', type: 'خلل' },
 ];
 
 // Simulated DevOps repos/branches — used by the Development stage's PR picker.
@@ -122,7 +122,7 @@ export const DEVOPS_PRS = [
 export const INITIAL_STAGES = [
   {
     id: 'stg-business-approval',
-    name: 'Business Approval',
+    name: 'موافقة الأعمال',
     previousId: null,
     nextId: 'stg-development',
     isActive: true,
@@ -134,7 +134,7 @@ export const INITIAL_STAGES = [
   },
   {
     id: 'stg-development',
-    name: 'Development',
+    name: 'التطوير',
     previousId: 'stg-business-approval',
     nextId: 'stg-testing',
     isActive: true,
@@ -146,7 +146,7 @@ export const INITIAL_STAGES = [
   },
   {
     id: 'stg-testing',
-    name: 'Testing',
+    name: 'الاختبار',
     previousId: 'stg-development',
     nextId: 'stg-cyber-security',
     isActive: true,
@@ -158,12 +158,12 @@ export const INITIAL_STAGES = [
   },
   {
     id: 'stg-cyber-security',
-    name: 'Cyber Security',
+    name: 'الأمن السيبراني',
     previousId: 'stg-testing',
     nextId: 'stg-cab',
     isActive: true,
     approverRoles: ['role-security-officer'],
-    requiredDocsToEnter: ['Test Report'],
+    requiredDocsToEnter: ['تقرير الاختبار'],
     sendBackTargets: ['stg-testing', 'stg-development'],
     slaHours: 48,
     posX: 880, posY: 120,
@@ -182,24 +182,24 @@ export const INITIAL_STAGES = [
   },
   {
     id: 'stg-production',
-    name: 'Production',
+    name: 'الإنتاج',
     previousId: 'stg-cab',
     nextId: 'stg-post-deployment',
     isActive: true,
     approverRoles: ['role-release-manager'],
-    requiredDocsToEnter: ['BRD', 'CR', 'Rollback Plan'],
+    requiredDocsToEnter: ['BRD', 'CR', 'خطة التراجع'],
     sendBackTargets: ['stg-cab'],
     slaHours: 24,
     posX: 1440, posY: 120,
   },
   {
     id: 'stg-post-deployment',
-    name: 'Post-Deployment Verification',
+    name: 'التحقق بعد النشر',
     previousId: 'stg-production',
     nextId: null,
     isActive: true,
     approverRoles: ['role-release-manager', 'role-requester'],
-    requiredDocsToEnter: ['Deployment Confirmation'],
+    requiredDocsToEnter: ['تأكيد النشر'],
     sendBackTargets: ['stg-production'],
     slaHours: 24,
     posX: 1720, posY: 120,
@@ -209,11 +209,11 @@ export const INITIAL_STAGES = [
 export const INITIAL_REQUESTS = [
   {
     id: 'REQ-1001',
-    title: 'Add self-service password reset',
-    description: 'Allow beneficiaries to reset their portal password via OTP.',
+    title: 'إضافة إعادة تعيين كلمة المرور بالخدمة الذاتية',
+    description: 'تمكين المستفيدين من إعادة تعيين كلمة مرور البوابة عبر رمز تحقق.',
     riskClassification: 'Medium',
     requesterId: 'user-sara',
-    requester: 'Sara Al-Otaibi',
+    requester: 'سارة العتيبي',
     currentStageId: 'stg-testing',
     overallStatus: 'In Progress',
     targetVersion: 'v2.4.0-rc1',
@@ -222,19 +222,19 @@ export const INITIAL_REQUESTS = [
       { id: 'doc-1', type: 'BRD', name: 'BRD_PasswordReset_v1.pdf', uploadedBy: 'Sara Al-Otaibi', uploadedAt: '2026-09-01T09:05:00Z' },
     ],
     transitions: [
-      { id: 't1', fromStage: null, toStage: 'stg-business-approval', action: 'Created', actor: 'Sara Al-Otaibi', role: 'role-requester', comment: 'Initial request submitted.', timestamp: '2026-09-01T09:00:00Z' },
-      { id: 't2', fromStage: 'stg-business-approval', toStage: 'stg-development', action: 'Approve', actor: 'Omar Fathi', role: 'role-product-owner', comment: 'Approved, aligns with Q3 roadmap.', timestamp: '2026-09-02T10:00:00Z' },
-      { id: 't3', fromStage: 'stg-development', toStage: 'stg-testing', action: 'Approve', actor: 'Khalid Noor', role: 'role-tech-lead', comment: 'Code complete, peer reviewed.', timestamp: '2026-09-05T14:00:00Z' },
+      { id: 't1', fromStage: null, toStage: 'stg-business-approval', action: 'تم الإنشاء', actor: 'سارة العتيبي', role: 'role-requester', comment: 'تم تقديم الطلب الأولي.', timestamp: '2026-09-01T09:00:00Z' },
+      { id: 't2', fromStage: 'stg-business-approval', toStage: 'stg-development', action: 'موافقة', actor: 'عمر فتحي', role: 'role-product-owner', comment: 'تمت الموافقة، ومتوافق مع خارطة طريق الربع الثالث.', timestamp: '2026-09-02T10:00:00Z' },
+      { id: 't3', fromStage: 'stg-development', toStage: 'stg-testing', action: 'موافقة', actor: 'خالد نور', role: 'role-tech-lead', comment: 'اكتمل التطوير وتمت مراجعة الكود.', timestamp: '2026-09-05T14:00:00Z' },
     ],
     comments: [],
   },
   {
     id: 'REQ-1002',
-    title: 'Grievance auto-escalation after 5 days',
-    description: 'Automatically escalate unresolved grievances to department director after 5 business days.',
+    title: 'تصعيد التظلمات تلقائيًا بعد 5 أيام',
+    description: 'تصعيد التظلمات غير المعالجة تلقائيًا إلى مدير الإدارة بعد خمسة أيام عمل.',
     riskClassification: 'Low',
     requesterId: 'user-sara',
-    requester: 'Sara Al-Otaibi',
+    requester: 'سارة العتيبي',
     currentStageId: 'stg-business-approval',
     overallStatus: 'In Progress',
     targetVersion: '',
@@ -243,7 +243,7 @@ export const INITIAL_REQUESTS = [
       { id: 'doc-2', type: 'BRD', name: 'BRD_GrievanceEscalation.docx', uploadedBy: 'Sara Al-Otaibi', uploadedAt: '2026-09-10T11:32:00Z' },
     ],
     transitions: [
-      { id: 't1', fromStage: null, toStage: 'stg-business-approval', action: 'Created', actor: 'Sara Al-Otaibi', role: 'role-requester', comment: 'Initial request submitted.', timestamp: '2026-09-10T11:30:00Z' },
+      { id: 't1', fromStage: null, toStage: 'stg-business-approval', action: 'تم الإنشاء', actor: 'سارة العتيبي', role: 'role-requester', comment: 'تم تقديم الطلب الأولي.', timestamp: '2026-09-10T11:30:00Z' },
     ],
     comments: [],
   },
@@ -253,7 +253,7 @@ export const INITIAL_NOTIFICATIONS = [
   {
     id: 'notif-seed-1',
     requestId: 'REQ-1001',
-    message: 'REQ-1001 "Add self-service password reset" needs QA sign-off (Testing).',
+    message: 'يتطلب REQ-1001 اعتماد ضمان الجودة (مرحلة الاختبار).',
     targetRoleId: 'role-qa-lead',
     targetUserId: null,
     timestamp: '2026-09-05T14:00:00Z',
@@ -262,7 +262,7 @@ export const INITIAL_NOTIFICATIONS = [
   {
     id: 'notif-seed-2',
     requestId: 'REQ-1002',
-    message: 'REQ-1002 "Grievance auto-escalation after 5 days" needs your Business Approval.',
+    message: 'يتطلب REQ-1002 موافقة الأعمال الخاصة بك.',
     targetRoleId: 'role-product-owner',
     targetUserId: null,
     timestamp: '2026-09-10T11:30:00Z',

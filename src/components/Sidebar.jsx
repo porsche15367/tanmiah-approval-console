@@ -2,12 +2,14 @@ import { useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { LayoutDashboard, PlusCircle, RefreshCw, CheckCircle2, UserCircle2, Settings, ChevronsLeft, ChevronsRight, FolderKanban } from 'lucide-react';
 import { useAppState, useCurrentUser } from '../context/AppContext';
+import { useLocale } from '../context/LocaleContext';
 
 export default function Sidebar() {
   const currentUser = useCurrentUser();
   const { requests } = useAppState();
   const location = useLocation();
   const [collapsed, setCollapsed] = useState(() => localStorage.getItem('approval-poc-sidebar-collapsed') === '1');
+  const { t } = useLocale();
 
   if (!currentUser) return null;
 
@@ -38,39 +40,39 @@ export default function Sidebar() {
       </div>
 
       <nav className="side-nav">
-        {!collapsed && <div className="side-section-label">Overview</div>}
-        <Link to="/" className={`side-link ${activeStatus === 'all' ? 'active' : ''}`} title="Dashboard">
-          <LayoutDashboard className="side-icon" size={16} /> {!collapsed && 'Dashboard'}
+        {!collapsed && <div className="side-section-label">{t('overview')}</div>}
+        <Link to="/" className={`side-link ${activeStatus === 'all' ? 'active' : ''}`} title={t('dashboardTitle')}>
+          <LayoutDashboard className="side-icon" size={16} /> {!collapsed && t('dashboardTitle')}
         </Link>
-        <Link to="/new" className={`side-link ${location.pathname === '/new' ? 'active' : ''}`} title="New Request">
-          <PlusCircle className="side-icon" size={16} /> {!collapsed && 'New Request'}
+        <Link to="/new" className={`side-link ${location.pathname === '/new' ? 'active' : ''}`} title={t('newRequest')}>
+          <PlusCircle className="side-icon" size={16} /> {!collapsed && t('newRequest')}
         </Link>
-        <Link to="/projects" className={`side-link ${location.pathname.startsWith('/projects') ? 'active' : ''}`} title="Projects Timeline">
-          <FolderKanban className="side-icon" size={16} /> {!collapsed && 'Projects Timeline'}
+        <Link to="/projects" className={`side-link ${location.pathname.startsWith('/projects') ? 'active' : ''}`} title={t('projectsTimeline')}>
+          <FolderKanban className="side-icon" size={16} /> {!collapsed && t('projectsTimeline')}
         </Link>
 
-        {!collapsed && <div className="side-section-label">Requests</div>}
-        <Link to="/?status=current" className={`side-link ${activeStatus === 'current' ? 'active' : ''}`} title="Current Requests">
+        {!collapsed && <div className="side-section-label">{t('currentRequests')}</div>}
+        <Link to="/?status=current" className={`side-link ${activeStatus === 'current' ? 'active' : ''}`} title={t('currentRequests')}>
           <RefreshCw className="side-icon" size={16} />
-          {!collapsed && <>Current Requests<span className="side-count">{currentCount}</span></>}
+          {!collapsed && <>{t('currentRequests')}<span className="side-count">{currentCount}</span></>}
         </Link>
-        <Link to="/?status=previous" className={`side-link ${activeStatus === 'previous' ? 'active' : ''}`} title="Previous Requests">
+        <Link to="/?status=previous" className={`side-link ${activeStatus === 'previous' ? 'active' : ''}`} title={t('previousRequests')}>
           <CheckCircle2 className="side-icon" size={16} />
-          {!collapsed && <>Previous Requests<span className="side-count">{previousCount}</span></>}
+          {!collapsed && <>{t('previousRequests')}<span className="side-count">{previousCount}</span></>}
         </Link>
 
-        {!collapsed && <div className="side-section-label">Account</div>}
-        <NavLink to="/profile" className={({ isActive }) => `side-link ${isActive ? 'active' : ''}`} title="My Profile">
-          <UserCircle2 className="side-icon" size={16} /> {!collapsed && 'My Profile'}
+        {!collapsed && <div className="side-section-label">{t('accountSection')}</div>}
+        <NavLink to="/profile" className={({ isActive }) => `side-link ${isActive ? 'active' : ''}`} title={t('myProfile')}>
+          <UserCircle2 className="side-icon" size={16} /> {!collapsed && t('myProfile')}
         </NavLink>
         {currentUser.roleId === 'role-admin' && (
-          <NavLink to="/admin" className={({ isActive }) => `side-link ${isActive ? 'active' : ''}`} title="Admin Config">
-            <Settings className="side-icon" size={16} /> {!collapsed && 'Admin Config'}
+          <NavLink to="/admin" className={({ isActive }) => `side-link ${isActive ? 'active' : ''}`} title={t('adminConfig')}>
+            <Settings className="side-icon" size={16} /> {!collapsed && t('adminConfig')}
           </NavLink>
         )}
       </nav>
 
-      <button className="sidebar-toggle" onClick={toggle} title={collapsed ? 'Expand menu' : 'Collapse menu'}>
+      <button className="sidebar-toggle" onClick={toggle} title={collapsed ? t('expandMenu') : t('collapseMenu')}>
         {collapsed ? <ChevronsRight size={15} /> : <ChevronsLeft size={15} />}
       </button>
 

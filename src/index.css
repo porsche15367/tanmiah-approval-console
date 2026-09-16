@@ -42,6 +42,48 @@ body {
   min-height: 100vh;
 }
 
+html[dir="rtl"] body {
+  direction: rtl;
+}
+
+html[dir="rtl"] .app-shell,
+html[dir="rtl"] .main-col,
+html[dir="rtl"] .page-head,
+html[dir="rtl"] .header-actions,
+html[dir="rtl"] .sidebar-footer,
+html[dir="rtl"] .profile-trigger,
+html[dir="rtl"] .side-link {
+  direction: rtl;
+}
+
+html[dir="rtl"] .sidebar { order: 1; }
+html[dir="rtl"] .main-col { order: 2; }
+html[dir="rtl"] .side-count { margin-left: 0; margin-right: auto; }
+html[dir="rtl"] .dropdown-panel { left: 0; right: auto; }
+html[dir="rtl"] .timeline li { border-left: 0; border-right: 2px solid var(--gray-200); padding: 0 20px 20px 0; }
+html[dir="rtl"] .timeline li::before { left: auto; right: -7px; }
+html[dir="rtl"] table.matrix th,
+html[dir="rtl"] table.matrix td { text-align: right; }
+html[dir="rtl"] .req-row { border-left-color: var(--gray-300); border-right: 4px solid var(--gray-300); }
+html[dir="rtl"] .req-row:hover { border-right-color: var(--green-500); }
+html[dir="rtl"] .req-row.risk-accent-low { border-right-color: var(--green-500); }
+html[dir="rtl"] .req-row.risk-accent-medium { border-right-color: var(--amber-700); }
+html[dir="rtl"] .req-row.risk-accent-high,
+html[dir="rtl"] .req-row.risk-accent-critical { border-right-color: var(--red-600); }
+html[dir="rtl"] .nr-timeline-preview li::before { left: auto; right: 11px; }
+html[dir="rtl"] .pkg-tab { margin-right: 0; margin-left: 14px; }
+
+.lang-toggle {
+  border: 1px solid var(--gray-200);
+  background: var(--green-50);
+  color: var(--green-800);
+  border-radius: 999px;
+  padding: 7px 12px;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
 a { color: var(--green-700); text-decoration: none; }
 
 #root { min-height: 100vh; display: flex; flex-direction: column; }
@@ -119,7 +161,7 @@ a { color: var(--green-700); text-decoration: none; }
 .app-header {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
   padding: 14px 32px;
   background: #fff;
   border-bottom: 1px solid var(--gray-200);

@@ -5,6 +5,7 @@ import { DEVOPS_PRS } from '../data/seed';
 import MultiSelect from './MultiSelect';
 import Select from './Select';
 import { RiskPill } from './Pills';
+import { useLocale } from '../context/LocaleContext';
 
 const RISK_OPTIONS = [
   { value: 'Low', label: 'Low' },
@@ -22,6 +23,7 @@ const RISK_OPTIONS = [
 export default function DevPackageCard({ request, currentUser, locked = false }) {
   const dispatch = useAppDispatch();
   const [tab, setTab] = useState('devops');
+  const { t } = useLocale();
 
   // DevOps / PR tab state
   const [prIds, setPrIds] = useState([]);
@@ -31,7 +33,7 @@ export default function DevPackageCard({ request, currentUser, locked = false })
   // Upload tab state
   const [pkgName, setPkgName] = useState('');
 
-  const existingPackage = [...request.documents].reverse().find((d) => d.type === 'Dev Package');
+  const existingPackage = [...request.documents].reverse().find((d) => d.type === 'حزمة التطوير');
   const selectedPrs = DEVOPS_PRS.filter((pr) => prIds.includes(pr.id));
 
   const handleConnect = () => {
@@ -48,14 +50,14 @@ export default function DevPackageCard({ request, currentUser, locked = false })
     const label = selectedPrs.length === 1
       ? `PR #${selectedPrs[0].number} — ${selectedPrs[0].repo}/${selectedPrs[0].branch} → main`
       : `${selectedPrs.length} PRs: ${selectedPrs.map((pr) => `${pr.repo}#${pr.number}`).join(', ')}`;
-    dispatch({ type: 'ADD_DOCUMENT', requestId: request.id, docType: 'Dev Package', name: label, uploadedBy: currentUser.name });
+    dispatch({ type: 'ADD_DOCUMENT', requestId: request.id, docType: 'حزمة التطوير', name: label, uploadedBy: currentUser.name });
     setPrIds([]);
     setConnected(false);
   };
 
   const attachFromUpload = () => {
     if (!pkgName.trim()) return;
-    dispatch({ type: 'ADD_DOCUMENT', requestId: request.id, docType: 'Dev Package', name: pkgName, uploadedBy: currentUser.name });
+    dispatch({ type: 'ADD_DOCUMENT', requestId: request.id, docType: 'حزمة التطوير', name: pkgName, uploadedBy: currentUser.name });
     setPkgName('');
   };
 
@@ -67,7 +69,7 @@ export default function DevPackageCard({ request, currentUser, locked = false })
   if (locked) {
     return (
       <div className="section card">
-        <h2 style={{ display: 'flex', alignItems: 'center', gap: 8 }}><Package size={17} /> Development Package</h2>
+        <h2 style={{ display: 'flex', alignItems: 'center', gap: 8 }}><Package size={17} /> {t('developmentPackage')}</h2>
         <div className="pkg-locked">
           <div className="pkg-locked-icon"><Lock size={16} /></div>
           <div>
@@ -93,13 +95,13 @@ export default function DevPackageCard({ request, currentUser, locked = false })
 
   return (
     <div className="section card">
-      <h2 style={{ display: 'flex', alignItems: 'center', gap: 8 }}><Package size={17} /> Development Package</h2>
+      <h2 style={{ display: 'flex', alignItems: 'center', gap: 8 }}><Package size={17} /> {t('developmentPackage')}</h2>
       <p style={{ color: 'var(--gray-500)', fontSize: '0.85rem', marginTop: -8, marginBottom: 16 }}>
         Attach the build for this change — either link the DevOps pull request or upload the deployment package directly.
       </p>
 
       <div className="form-row" style={{ maxWidth: 280 }}>
-        <label style={{ display: 'flex', alignItems: 'center', gap: 6 }}><ShieldAlert size={14} /> Risk Classification</label>
+        <label style={{ display: 'flex', alignItems: 'center', gap: 6 }}><ShieldAlert size={14} /> {t('riskClassification')}</label>
         <Select value={request.riskClassification === 'Unclassified' ? undefined : request.riskClassification} onValueChange={setRisk} options={RISK_OPTIONS} placeholder="Set the risk level..." />
       </div>
 
@@ -112,21 +114,21 @@ export default function DevPackageCard({ request, currentUser, locked = false })
 
       <div className="pkg-tabs">
         <button type="button" className={`pkg-tab ${tab === 'devops' ? 'active' : ''}`} onClick={() => setTab('devops')}>
-          <GitPullRequest size={15} /> PR / DevOps Integration
+          <GitPullRequest size={15} /> {t('prIntegration')}
         </button>
         <button type="button" className={`pkg-tab ${tab === 'upload' ? 'active' : ''}`} onClick={() => setTab('upload')}>
-          <UploadCloud size={15} /> Upload Package
+          <UploadCloud size={15} /> {t('uploadPackage')}
         </button>
       </div>
 
       {tab === 'devops' ? (
         <div className="pkg-panel">
           <div className="form-row" style={{ marginBottom: connected ? 16 : 0 }}>
-            <label>Pull Requests (multiple repos & branches)</label>
+            <label>{t('pullRequests')}</label>
             <MultiSelect
               value={prIds}
               onChange={(next) => { setPrIds(next); setConnected(false); }}
-              placeholder="Select one or more open PRs..."
+              placeholder={t('selectPrs')}
               options={DEVOPS_PRS.map((pr) => ({ value: pr.id, label: `${pr.repo} — PR #${pr.number}: ${pr.title}`, sublabel: `${pr.branch} → main` }))}
             />
           </div>
@@ -147,11 +149,11 @@ export default function DevPackageCard({ request, currentUser, locked = false })
           <div style={{ display: 'flex', gap: 10, marginTop: 16, flexWrap: 'wrap' }}>
             {!connected ? (
               <button type="button" className="btn btn-outline" onClick={handleConnect} disabled={prIds.length === 0 || connecting} style={{ display: 'inline-flex', alignItems: 'center', gap: 7 }}>
-                <Link2 size={14} /> {connecting ? 'Connecting...' : 'Connect to DevOps'}
+                <Link2 size={14} /> {connecting ? t('connecting') : t('connectDevOps')}
               </button>
             ) : (
               <button type="button" className="btn btn-primary" onClick={attachFromPr} style={{ display: 'inline-flex', alignItems: 'center', gap: 7 }}>
-                <Package size={14} /> Attach as Development Package
+                <Package size={14} /> {t('attachDevelopmentPackage')}
               </button>
             )}
           </div>
@@ -160,15 +162,15 @@ export default function DevPackageCard({ request, currentUser, locked = false })
         <div className="pkg-panel">
           <div className="pkg-dropzone">
             <UploadCloud size={22} />
-            <div className="pkg-dropzone-text">Drag & drop the deployment package here, or type a file name below</div>
+            <div className="pkg-dropzone-text">{t('packageDropzone')}</div>
           </div>
           <div style={{ display: 'flex', gap: 10, marginTop: 14, flexWrap: 'wrap', alignItems: 'flex-end' }}>
             <div className="form-row" style={{ marginBottom: 0, flex: 1, minWidth: 220 }}>
-              <label>Package File Name (simulated)</label>
+              <label>{t('packageFileName')}</label>
               <input value={pkgName} onChange={(e) => setPkgName(e.target.value)} placeholder="e.g. release_v2.4.0_build482.zip" />
             </div>
             <button type="button" className="btn btn-primary" onClick={attachFromUpload} style={{ display: 'inline-flex', alignItems: 'center', gap: 7 }}>
-              <UploadCloud size={14} /> Upload Package
+              <UploadCloud size={14} /> {t('uploadPackage')}
             </button>
           </div>
         </div>

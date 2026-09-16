@@ -1,12 +1,14 @@
 import { useNavigate } from 'react-router-dom';
 import { LogOut } from 'lucide-react';
 import { useAppDispatch, useAppState, useCurrentUser } from '../context/AppContext';
+import { useLocale } from '../context/LocaleContext';
 
 export default function Profile() {
   const { stages, roles, requests } = useAppState();
   const currentUser = useCurrentUser();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const { t } = useLocale();
 
   if (!currentUser) return null;
 
@@ -21,13 +23,13 @@ export default function Profile() {
 
   return (
     <main className="container">
-      <h1>My Profile</h1>
-      <p className="subtitle">Your account details and where you show up in the approval pipeline.</p>
+      <h1>{t('myProfile')}</h1>
+      <p className="subtitle">تفاصيل حسابك ودورك ضمن مسار الموافقات.</p>
 
       <div className="two-col">
         <div>
           <div className="section card">
-            <h2>Account</h2>
+            <h2>{t('account')}</h2>
             <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 20 }}>
               <div className="avatar" style={{ width: 56, height: 56, fontSize: '1.1rem' }}>{currentUser.initials}</div>
               <div>
@@ -37,17 +39,17 @@ export default function Profile() {
             </div>
             <table className="matrix">
               <tbody>
-                <tr><td><b>Role</b></td><td>{roleName}</td></tr>
-                <tr><td><b>Requests Submitted</b></td><td>{myRequests.length}</td></tr>
+                <tr><td><b>{t('role')}</b></td><td>{roleName}</td></tr>
+                <tr><td><b>{t('requestsSubmitted')}</b></td><td>{myRequests.length}</td></tr>
               </tbody>
             </table>
-            <button className="btn btn-danger" style={{ marginTop: 18, display: 'inline-flex', alignItems: 'center', gap: 7 }} onClick={logout}><LogOut size={15} /> Logout</button>
+            <button className="btn btn-danger" style={{ marginTop: 18, display: 'inline-flex', alignItems: 'center', gap: 7 }} onClick={logout}><LogOut size={15} /> {t('logout')}</button>
           </div>
 
           <div className="section card">
-            <h2>Stages You Can Act On</h2>
+            <h2>{t('stagesYouCanActOn')}</h2>
             {stagesForRole.length === 0 ? (
-              <p style={{ color: 'var(--gray-500)' }}>Your role isn't an approver on any active stage.</p>
+              <p style={{ color: 'var(--gray-500)' }}>{t('noStagesForRole')}</p>
             ) : (
               <ul style={{ paddingLeft: 20, color: 'var(--gray-700)' }}>
                 {stagesForRole.map((s) => <li key={s.id} style={{ marginBottom: 6 }}>{s.name}</li>)}
@@ -57,9 +59,9 @@ export default function Profile() {
         </div>
 
         <div className="card">
-          <h2>My Requests</h2>
+          <h2>{t('myRequests')}</h2>
           {myRequests.length === 0 ? (
-            <p style={{ color: 'var(--gray-500)', fontSize: '0.85rem' }}>You haven't submitted any requests yet.</p>
+            <p style={{ color: 'var(--gray-500)', fontSize: '0.85rem' }}>{t('noRequestsYetForUser')}</p>
           ) : (
             myRequests.map((r) => (
               <div key={r.id} style={{ marginBottom: 12, paddingBottom: 12, borderBottom: '1px solid var(--gray-200)' }}>

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { ArrowLeft, FileText, Paperclip, Send, Info, GitBranch, Link2, ListChecks } from 'lucide-react';
 import { useAppDispatch, useAppState, useCurrentUser } from '../context/AppContext';
+import { useLocale } from '../context/LocaleContext';
 import { getOrderedStages, stageRoleNames } from '../utils/workflow';
 import { BACKLOG_ITEMS } from '../data/seed';
 import MultiSelect from '../components/MultiSelect';
@@ -11,6 +12,7 @@ export default function NewRequest() {
   const navigate = useNavigate();
   const currentUser = useCurrentUser();
   const { stages, roles } = useAppState();
+  const { t } = useLocale();
   const [form, setForm] = useState({
     title: '',
     description: '',
@@ -48,38 +50,38 @@ export default function NewRequest() {
   return (
     <main className="container">
       <div style={{ marginBottom: 18 }}>
-        <Link to="/" style={{ color: 'var(--gray-500)', fontSize: '0.85rem', display: 'inline-flex', alignItems: 'center', gap: 6 }}><ArrowLeft size={14} /> Back to dashboard</Link>
+        <Link to="/" style={{ color: 'var(--gray-500)', fontSize: '0.85rem', display: 'inline-flex', alignItems: 'center', gap: 6 }}><ArrowLeft size={14} /> {t('backToDashboard')}</Link>
       </div>
 
-      <h1>New Feature / Change Request</h1>
-      <p className="subtitle">Every request starts at {firstStage ? firstStage.name : 'the first stage'}. A BRD is required to progress past Development.</p>
+      <h1>{t('newFeatureRequest')}</h1>
+      <p className="subtitle">{t('requestIntro', { stage: firstStage ? firstStage.name : 'المرحلة الأولى' })}</p>
 
       <div className="nr-layout">
         <form className="card nr-form" onSubmit={submit}>
           {error && <div className="alert alert-error">{error}</div>}
 
-          <div className="nr-section-title"><FileText size={15} /> Basic Information</div>
+          <div className="nr-section-title"><FileText size={15} /> {t('basicInformation')}</div>
           <div className="form-row">
-            <label>Title</label>
+            <label>{t('title')}</label>
             <input value={form.title} onChange={update('title')} placeholder="e.g. Add SMS notifications for grievance updates" required />
           </div>
           <div className="form-row">
-            <label>Description</label>
+            <label>{t('description')}</label>
             <textarea value={form.description} onChange={update('description')} placeholder="Short description of the feature/change" />
           </div>
           <div className="form-row">
-            <label>Requester</label>
+            <label>{t('requester')}</label>
             <input value={currentUser?.name || ''} disabled />
           </div>
 
           <div className="nr-divider" />
 
-          <div className="nr-section-title"><GitBranch size={15} /> Linked Backlog Items (DevOps)</div>
+          <div className="nr-section-title"><GitBranch size={15} /> {t('linkedBacklog')}</div>
           {!backlogConnected ? (
             <div className="form-row" style={{ marginBottom: 0 }}>
-              <label>Pull the backlog to select which features this request covers</label>
+              <label>{t('backlogHelp')}</label>
               <button type="button" className="btn btn-outline" onClick={connectBacklog} disabled={backlogConnecting} style={{ display: 'inline-flex', alignItems: 'center', gap: 7 }}>
-                <Link2 size={14} /> {backlogConnecting ? 'Connecting to DevOps...' : 'Connect to DevOps Backlog'}
+                <Link2 size={14} /> {backlogConnecting ? t('connectingBacklog') : t('connectBacklog')}
               </button>
             </div>
           ) : (
@@ -96,21 +98,21 @@ export default function NewRequest() {
 
           <div className="nr-divider" />
 
-          <div className="nr-section-title"><Paperclip size={15} /> Supporting Document</div>
+          <div className="nr-section-title"><Paperclip size={15} /> {t('supportingDocument')}</div>
           <div className="form-row" style={{ marginBottom: 0 }}>
             <label>BRD Document (file name, simulated upload)</label>
             <input value={form.brdName} onChange={update('brdName')} placeholder="e.g. BRD_SMS_Notifications_v1.pdf" />
           </div>
 
           <div className="nr-actions">
-            <Link to="/" className="btn btn-outline">Cancel</Link>
-            <button className="btn btn-primary" type="submit" style={{ display: 'inline-flex', alignItems: 'center', gap: 7 }}><Send size={15} /> Submit Request</button>
+            <Link to="/" className="btn btn-outline">{t('cancel')}</Link>
+            <button className="btn btn-primary" type="submit" style={{ display: 'inline-flex', alignItems: 'center', gap: 7 }}><Send size={15} /> {t('submitRequest')}</button>
           </div>
         </form>
 
         <aside className="nr-side">
           <div className="card nr-side-card">
-            <div className="nr-side-title">What happens next</div>
+            <div className="nr-side-title">{t('whatHappensNext')}</div>
             <ul className="nr-timeline-preview">
               {orderedStages.slice(0, 5).map((s, idx) => (
                 <li key={s.id} className={idx === 0 ? 'nr-tp-first' : ''}>
@@ -125,7 +127,7 @@ export default function NewRequest() {
           </div>
 
           <div className="card nr-side-card">
-            <div className="nr-side-title" style={{ display: 'flex', alignItems: 'center', gap: 7 }}><Info size={14} /> Good to know</div>
+            <div className="nr-side-title" style={{ display: 'flex', alignItems: 'center', gap: 7 }}><Info size={14} /> {t('goodToKnow')}</div>
             <p className="nr-hint">A comment is required at every approval step. The Development team will set the risk classification once the request reaches Development, and moving into some stages (e.g. Cyber Security, CAB) requires specific documents such as a CR or Test Report.</p>
           </div>
         </aside>
